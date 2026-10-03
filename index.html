@@ -1,17 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-  <title>Joshua | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101113">
+  <title>Mark Joshua Hizon | Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- NAVIGATION -->
   <header>
-    <a class="logo" href="#">JOSHUA.</a>
+    <a class="logo" href="#home">
+      <span class="logo-mark">MJ</span>
+      <span class="logo-name">Hizon, MJ</span>
+    </a>
+
     <nav>
-      <a href="#home">Home</a>
+      <a class="active" href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
@@ -20,65 +28,252 @@
   </header>
 
   <main>
+
+    <!-- HERO -->
     <section id="home" class="hero">
-      <p class="tag">Welcome to my portfolio</p>
-      <h1>Hi, I'm <span>Joshua.</span></h1>
-      <h2>Aspiring Web Developer</h2>
-      <p>
-        I build simple and user-friendly websites
-        and enjoy learning new technologies.
-      </p>
-      <a class="btn" href="#projects">View My Work</a>
-    </section>
+      <div class="hero-content">
+        <p class="tag">
+          <span></span>
+          Welcome to my portfolio
+        </p>
 
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I'm Joshua, a student passionate about
-        technology and web development. I enjoy
-        creating projects and improving my coding
-        skills.
-      </p>
-    </section>
+        <h1>
+          Hi, I'm<br>
+          <span>Hizon, Mark Joshua.</span>
+        </h1>
 
-    <section id="skills">
-      <h2>My Skills</h2>
-      <div class="skills">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>JavaScript</span>
-        <span>Python</span>
-        <span>GitHub</span>
+        <h2>Aspiring Web Developer</h2>
+
+        <p class="hero-description">
+          I build simple and user-friendly websites and enjoy
+          learning new technologies.
+        </p>
+
+        <a class="btn" href="#projects">
+          View My Work
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="hero-visual" aria-label="MJ monogram">
+        <div class="hero-shape shape-one"></div>
+        <div class="hero-shape shape-two"></div>
+        <div class="hero-monogram">MJ</div>
       </div>
     </section>
 
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-text">
+          <p class="section-number">01 <span></span></p>
+          <h2>About Me</h2>
+
+          <p>
+            I'm Joshua, a student passionate about technology
+            and web development. I enjoy creating projects,
+            exploring new technologies, and improving my
+            coding skills.
+          </p>
+        </div>
+
+        <div class="about-info">
+          <div class="info-item">
+            <span class="info-label">Name</span>
+            <p>Mark Joshua Hizon</p>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Course</span>
+            <p>Your Course</p>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Year</span>
+            <p>3rd Year</p>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">Interests</span>
+            <p>Web Development, Programming</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <p class="section-number">02 <span></span></p>
+      <h2>Educational Background</h2>
+
+      <div class="education">
+        <article class="education-item">
+          <span class="education-year">2022 - Present</span>
+          <h3>Bachelor's Degree</h3>
+          <h4>Your Course / Program</h4>
+          <p>Your University or College Name</p>
+        </article>
+
+        <article class="education-item">
+          <span class="education-year">2020 - 2022</span>
+          <h3>Senior High School</h3>
+          <h4>STEM Strand</h4>
+          <p>Your Senior High School Name</p>
+        </article>
+
+        <article class="education-item">
+          <span class="education-year">2016 - 2020</span>
+          <h3>Junior High School</h3>
+          <p>Your Junior High School Name</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-number">03 <span></span></p>
+      <h2>My Skills</h2>
+
+      <div class="skills">
+        <span class="skill">
+          <span class="skill-icon">5</span>
+          HTML
+        </span>
+
+        <span class="skill">
+          <span class="skill-icon">3</span>
+          CSS
+        </span>
+
+        <span class="skill">
+          <span class="skill-icon js-icon">JS</span>
+          JavaScript
+        </span>
+
+        <span class="skill">
+          <span class="skill-icon python-icon">Py</span>
+          Python
+        </span>
+
+        <span class="skill">
+          <span class="skill-icon github-icon">GH</span>
+          GitHub
+        </span>
+
+        <span class="skill">
+          <span class="skill-icon git-icon">Git</span>
+          Git
+        </span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
     <section id="projects">
+      <p class="section-number">04 <span></span></p>
       <h2>My Projects</h2>
+
       <div class="projects">
         <article class="project">
+          <span class="project-number">01 / WEB</span>
           <h3>Personal Portfolio</h3>
-          <p>A website that introduces me and
-            showcases my skills.</p>
+          <p>
+            A personal portfolio website designed to introduce
+            myself and showcase my skills and projects.
+          </p>
+          <div class="project-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
         </article>
+
         <article class="project">
+          <span class="project-number">02 / WEB</span>
           <h3>Simple Calculator</h3>
-          <p>A basic calculator made using
-            HTML, CSS, and JavaScript.</p>
+          <p>
+            A basic calculator application that performs
+            arithmetic operations using a simple interface.
+          </p>
+          <div class="project-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+          </div>
+        </article>
+
+        <article class="project">
+          <span class="project-number">03 / IOT</span>
+          <h3>Aqua Sense</h3>
+          <p>
+            An intelligent water dispensing system designed
+            to monitor water quality and track user hydration.
+          </p>
+          <div class="project-tags">
+            <span>ESP32</span>
+            <span>C++</span>
+            <span>IoT</span>
+          </div>
         </article>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>Let's connect and work on something new.</p>
-      <a class="btn" href="mailto:your.email@example.com">
-        Send Me an Email
-      </a>
+    <!-- CONTACT -->
+    <section id="contact" class="contact-section">
+      <p class="section-number">05 <span></span></p>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p class="contact-tag">Get in touch</p>
+          <h2>LET'S WORK<br>TOGETHER.</h2>
+
+          <p class="contact-description">
+            Have a project idea or want to work together?
+            Feel free to reach out. I'm open to discussing
+            new ideas, projects, and opportunities.
+          </p>
+
+          <div class="contact-email">
+            <span>Email</span>
+            <a href="mailto:your.email@example.com">
+              mjhizon23@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Enter subject"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="7"
+              placeholder="Write your message..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="send-btn">
+            Send Message <span>→</span>
+          </button>
+        </form>
+      </div>
     </section>
+
   </main>
 
   <footer>
-    <p>© 2026 Joshua. All rights reserved.</p>
+    <p>© 2026 Mark Joshua Hizon. All rights reserved.</p>
+    <a href="#home">Back to top ↑</a>
   </footer>
 
   <script src="script.js"></script>
