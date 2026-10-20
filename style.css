@@ -2760,3 +2760,839 @@ footer a:hover {
   transform: translateY(-2px);
 }
 
+
+/* =========================
+   LIGHT / DARK MODE TOGGLE
+========================= */
+
+/* Theme variables for light mode */
+body[data-theme="light"] {
+  --bg-primary: #F4F5F6;
+  --bg-secondary: #E9EAEC;
+  --bg-navbar: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-accent: #E1E3E6;
+
+  --border-color: #D2D5D9;
+  --border-light: #AEB3BA;
+
+  --text-primary: #202226;
+  --text-secondary: #50545B;
+  --text-muted: #747982;
+
+  --accent: #555B64;
+  --accent-hover: #101113;
+
+  --button-bg: transparent;
+  --button-border: #777D86;
+  --button-text: #202226;
+
+  --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Smoothly transition the main theme colors */
+body,
+header,
+footer,
+section,
+.project,
+.education-item,
+.info-item,
+.quality,
+.form-group input,
+.form-group textarea,
+#skills .skill .skill-description {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Hero background in light mode */
+body[data-theme="light"] .hero {
+  background: linear-gradient(
+    110deg,
+    #FFFFFF 0%,
+    #F0F1F3 100%
+  );
+}
+
+/* Light-mode profile decoration */
+body[data-theme="light"] .hero-visual {
+  background: transparent;
+}
+
+body[data-theme="light"] .hero-shape.shape-one {
+  background: #E3E5E8;
+}
+
+body[data-theme="light"] .hero-shape.shape-two {
+  border-color: #D0D3D8;
+}
+
+body[data-theme="light"] .hero-monogram {
+  color: #C6C9CE;
+}
+
+/* Light-mode skill description popup */
+body[data-theme="light"] #skills .skill .skill-description {
+  background: #FFFFFF !important;
+  color: #353940;
+  border-color: #D2D5D9;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Skill buttons */
+body[data-theme="light"] #skills .skill:hover,
+body[data-theme="light"] #skills .skill.active {
+  background: #E1E3E6;
+  color: #202226;
+  border-color: #777D86;
+}
+
+/* Light-mode input fields */
+body[data-theme="light"] .form-group input,
+body[data-theme="light"] .form-group textarea {
+  background: #FFFFFF;
+  color: #202226;
+  border-color: #D2D5D9;
+}
+
+body[data-theme="light"] .form-group input:focus,
+body[data-theme="light"] .form-group textarea:focus {
+  background: #FFFFFF;
+  border-color: #777D86;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 12px;
+
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.theme-toggle i {
+  font-size: 13px;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-accent);
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+/* Keep the header usable on smaller screens */
+@media (max-width: 768px) {
+  nav {
+    height: auto;
+    row-gap: 10px;
+  }
+
+  .theme-toggle {
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .theme-toggle {
+    padding: 7px 10px;
+    font-size: 10px;
+  }
+}
+
+
+/* =========================
+   ANIMATED GEOMETRIC BACKGROUND
+   Add at the END of style.css
+========================= */
+
+/* Keep background effects behind all content */
+body {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--bg-primary);
+}
+
+/* Background layer for the entire website */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      125deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(160, 164, 171, 0.035) 35.1%,
+      rgba(160, 164, 171, 0.035) 35.5%,
+      transparent 35.6%,
+      transparent 68%,
+      rgba(160, 164, 171, 0.045) 68.1%,
+      rgba(160, 164, 171, 0.045) 68.5%,
+      transparent 68.6%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px,
+      transparent 110px,
+      rgba(160, 164, 171, 0.025) 111px,
+      rgba(160, 164, 171, 0.025) 112px,
+      transparent 113px,
+      transparent 220px
+    );
+
+  animation: geometricDrift 35s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Soft geometric glow */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(160, 164, 171, 0.055),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 85% 75%,
+      rgba(160, 164, 171, 0.045),
+      transparent 38%
+    );
+
+  animation: geometricGlow 18s ease-in-out infinite alternate;
+}
+
+/* Keep sections above the background */
+header,
+main,
+footer {
+  position: relative;
+}
+
+/* Add a subtle diagonal pattern over each section */
+header,
+main section,
+footer {
+  isolation: isolate;
+}
+
+header::before,
+main section::before,
+footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      125deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(160, 164, 171, 0.035) 58.1%,
+      rgba(160, 164, 171, 0.035) 58.5%,
+      transparent 58.6%
+    ),
+    linear-gradient(
+      145deg,
+      transparent 0%,
+      transparent 78%,
+      rgba(160, 164, 171, 0.025) 78.1%,
+      rgba(160, 164, 171, 0.025) 78.5%,
+      transparent 78.6%
+    );
+
+  background-size: 180% 180%;
+  animation: sectionGeometry 28s ease-in-out infinite alternate;
+}
+
+/* Preserve the existing hero gradient */
+.hero {
+  background-image:
+    linear-gradient(
+      110deg,
+      rgba(160, 164, 171, 0.025),
+      transparent 65%
+    ),
+    linear-gradient(110deg, #141517 0%, #101113 100%);
+}
+
+/* Slow, restrained background movement */
+@keyframes geometricDrift {
+  from {
+    transform: translate3d(-1%, -1%, 0) rotate(-1deg);
+  }
+
+  to {
+    transform: translate3d(1%, 1%, 0) rotate(1deg);
+  }
+}
+
+@keyframes geometricGlow {
+  from {
+    opacity: 0.55;
+    transform: translate3d(-1%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(1%, 1%, 0);
+  }
+}
+
+@keyframes sectionGeometry {
+  from {
+    background-position: 0% 0%;
+  }
+
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+/* Light-mode geometric accents */
+body[data-theme="light"]::before {
+  background:
+    linear-gradient(
+      125deg,
+      transparent 35%,
+      rgba(70, 75, 84, 0.035) 35.1%,
+      rgba(70, 75, 84, 0.035) 35.5%,
+      transparent 35.6%,
+      transparent 68%,
+      rgba(70, 75, 84, 0.04) 68.1%,
+      rgba(70, 75, 84, 0.04) 68.5%,
+      transparent 68.6%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0px,
+      transparent 110px,
+      rgba(70, 75, 84, 0.025) 111px,
+      rgba(70, 75, 84, 0.025) 112px,
+      transparent 113px,
+      transparent 220px
+    );
+}
+
+body[data-theme="light"]::after {
+  background:
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(70, 75, 84, 0.045),
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse at 85% 75%,
+      rgba(70, 75, 84, 0.035),
+      transparent 38%
+    );
+}
+
+/* Match the diagonal accents to the light theme */
+body[data-theme="light"] header::before,
+body[data-theme="light"] main section::before,
+body[data-theme="light"] footer::before {
+  background:
+    linear-gradient(
+      125deg,
+      transparent 58%,
+      rgba(70, 75, 84, 0.035) 58.1%,
+      rgba(70, 75, 84, 0.035) 58.5%,
+      transparent 58.6%
+    ),
+    linear-gradient(
+      145deg,
+      transparent 78%,
+      rgba(70, 75, 84, 0.025) 78.1%,
+      rgba(70, 75, 84, 0.025) 78.5%,
+      transparent 78.6%
+    );
+
+  background-size: 180% 180%;
+}
+
+/* Respect accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  header::before,
+  main section::before,
+  footer::before {
+    animation: none !important;
+    will-change: auto;
+  }
+}
+
+/* Avoid unnecessary animation on smaller devices */
+/* Slightly faster geometric animations */
+body::before {
+  animation-duration: 22s;
+}
+
+body::after {
+  animation-duration: 12s;
+}
+
+header::before,
+main section::before,
+footer::before {
+  animation-duration: 18s;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  body::before {
+    animation-duration: 30s;
+  }
+
+  body::after {
+    animation-duration: 18s;
+  }
+
+  header::before,
+  main section::before,
+  footer::before {
+    animation-duration: 24s;
+  }
+}
+
+
+
+
+/* ==========================================
+   FIX: SHOW GEOMETRY THROUGHOUT THE WEBSITE
+========================================== */
+
+/* Keep section backgrounds transparent so the
+   main animated background can show through.
+   Remove any background only if it is currently
+   hiding the pattern. */
+
+#about,
+#skills,
+#projects,
+#education,
+#contact {
+  background-color: transparent;
+}
+
+/* Put the decorative geometry above the section
+   background, but behind the section's content. */
+
+header,
+main section,
+footer {
+  position: relative;
+  isolation: isolate;
+}
+
+header::before,
+main section::before,
+footer::before {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Keep actual section content above the pattern. */
+header > *,
+main section > *,
+footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Preserve the theme background colors where needed. */
+body[data-theme="light"] #about,
+body[data-theme="light"] #skills,
+body[data-theme="light"] #projects,
+body[data-theme="light"] #education,
+body[data-theme="light"] #contact {
+  background-color: transparent;
+}
+
+
+/* ==========================================
+   HIZON, MJ — PREMIUM PORTFOLIO ANIMATIONS
+   Silver Light Sweep + Ambient Spotlight
+   Interactive Hover Glow
+========================================== */
+
+/* ------------------------------------------
+   1. SILVER LIGHT SWEEP
+   A soft light travels across the background
+------------------------------------------ */
+
+body {
+  --sweep-color: rgba(205, 210, 218, 0.075);
+  --spotlight-color: rgba(175, 182, 192, 0.09);
+  --hover-glow: rgba(190, 197, 207, 0.16);
+}
+
+/* Keep the light sweep on its own layer so
+   it does not disturb the existing grid. */
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body .light-sweep-layer {
+  display: none;
+}
+
+/* Use the existing background pseudo-element
+   for the ambient lighting instead of creating
+   another moving geometric layer. */
+body::after {
+  background:
+    radial-gradient(
+      circle at 18% 25%,
+      var(--spotlight-color),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 82% 72%,
+      rgba(160, 168, 180, 0.055),
+      transparent 34%
+    ),
+    linear-gradient(
+      115deg,
+      transparent 30%,
+      var(--sweep-color) 48%,
+      rgba(205, 210, 218, 0.025) 52%,
+      transparent 68%
+    );
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    250% 250%;
+
+  background-position:
+    center,
+    center,
+    100% 100%;
+
+  animation:
+    ambientSpotlight 16s ease-in-out infinite alternate,
+    silverLightSweep 10s ease-in-out infinite;
+}
+
+/* Ambient glow moves slowly */
+@keyframes ambientSpotlight {
+  0% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* The silver highlight sweeps across the page */
+@keyframes silverLightSweep {
+  0% {
+    background-position:
+      center,
+      center,
+      100% 100%;
+  }
+
+  100% {
+    background-position:
+      center,
+      center,
+      0% 0%;
+  }
+}
+
+/* ------------------------------------------
+   2. INTERACTIVE HOVER GLOW
+   Reusable effect for cards and controls
+------------------------------------------ */
+
+/* Project cards */
+.project,
+.education-item,
+.info-item,
+.quality {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.project:hover,
+.education-item:hover,
+.info-item:hover,
+.quality:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-light);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    0 0 18px var(--hover-glow);
+}
+
+/* Buttons and interactive controls */
+button,
+.btn,
+input[type="submit"],
+input[type="button"] {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+button:hover,
+.btn:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  box-shadow: 0 0 18px var(--hover-glow);
+}
+
+/* Skill items */
+#skills .skill {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+#skills .skill:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 16px var(--hover-glow);
+}
+
+/* Navigation links */
+nav a {
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+nav a:hover {
+  text-shadow: 0 0 12px var(--hover-glow);
+}
+
+/* ------------------------------------------
+   3. LIGHT MODE
+------------------------------------------ */
+
+body[data-theme="light"] {
+  --sweep-color: rgba(75, 82, 92, 0.045);
+  --spotlight-color: rgba(100, 108, 120, 0.065);
+  --hover-glow: rgba(70, 75, 84, 0.12);
+}
+
+body[data-theme="light"] .project:hover,
+body[data-theme="light"] .education-item:hover,
+body[data-theme="light"] .info-item:hover,
+body[data-theme="light"] .quality:hover {
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.07),
+    0 0 16px var(--hover-glow);
+}
+
+/* ------------------------------------------
+   4. RESPONSIVE + ACCESSIBILITY
+------------------------------------------ */
+
+@media (max-width: 600px) {
+  body::after {
+    animation-duration: 20s, 14s;
+  }
+
+  .project:hover,
+  .education-item:hover,
+  .info-item:hover,
+  .quality:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none !important;
+  }
+
+  .project,
+  .education-item,
+  .info-item,
+  .quality,
+  button,
+  .btn,
+  input[type="submit"],
+  input[type="button"],
+  #skills .skill,
+  nav a {
+    transition: none !important;
+  }
+
+  .project:hover,
+  .education-item:hover,
+  .info-item:hover,
+  .quality:hover,
+  #skills .skill:hover {
+    transform: none;
+  }
+}
+
+
+/* ==========================================
+   STICKY NAVIGATION BAR
+========================================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--bg-navbar);
+  border-bottom: 1px solid var(--border-color);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Keep navigation links and buttons clickable */
+header nav {
+  position: relative;
+  z-index: 1001;
+}
+
+/* Prevent anchor links from hiding beneath
+   the sticky navigation bar */
+html {
+  scroll-padding-top: 90px;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  html {
+    scroll-padding-top: 110px;
+  }
+}
+
+
+/* ==========================================
+   PORTFOLIO TYPOGRAPHY REFINEMENT
+========================================== */
+
+/* Body text */
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.1px;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+.hero-monogram {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.2;
+}
+
+/* Main hero heading */
+.hero h1 {
+  font-weight: 800;
+  letter-spacing: -1.8px;
+  line-height: 1.08;
+}
+
+/* Section headings */
+section h2 {
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+/* Project titles */
+.project h3 {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+/* Paragraphs */
+p {
+  line-height: 1.75;
+}
+
+/* Navigation */
+nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Small labels and section numbers */
+.section-number,
+.project-number,
+.project-tags span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* Responsive typography */
+@media (max-width: 600px) {
+  .hero h1 {
+    letter-spacing: -1px;
+  }
+
+  section h2 {
+    letter-spacing: -0.4px;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+}
+
+

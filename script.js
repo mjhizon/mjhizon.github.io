@@ -98,3 +98,64 @@ if (contactForm) {
     }
   });
 }
+
+
+/* =========================
+   LIGHT / DARK MODE
+========================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const themeToggle = document.getElementById("themeToggle");
+
+  if (!themeToggle) return;
+
+  const themeIcon = themeToggle.querySelector("i");
+  const themeText = themeToggle.querySelector("span");
+
+  // Load the saved theme, or use dark mode by default
+  let savedTheme = "dark";
+
+  try {
+    savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+  } catch (error) {
+    savedTheme = "dark";
+  }
+
+  function applyTheme(theme) {
+    const isLight = theme === "light";
+
+    document.body.setAttribute("data-theme", theme);
+
+    // Update the toggle icon and label
+    themeIcon.className = isLight
+      ? "fa-solid fa-moon"
+      : "fa-solid fa-sun";
+
+    themeText.textContent = isLight
+      ? "Dark Mode"
+      : "Light Mode";
+
+    themeToggle.setAttribute(
+      "aria-label",
+      isLight ? "Switch to dark mode" : "Switch to light mode"
+    );
+
+    // Save the selected theme
+    try {
+      localStorage.setItem("portfolio-theme", theme);
+    } catch (error) {
+      // Theme switching still works if storage is unavailable
+    }
+  }
+
+  // Apply the initial theme
+  applyTheme(savedTheme === "light" ? "light" : "dark");
+
+  // Switch themes when clicked
+  themeToggle.addEventListener("click", function () {
+    const currentTheme = document.body.getAttribute("data-theme");
+
+    applyTheme(currentTheme === "light" ? "dark" : "light");
+  });
+});
+
