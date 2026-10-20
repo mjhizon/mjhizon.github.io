@@ -4318,3 +4318,34 @@ body[data-theme="light"] header .nav-logo img {
     padding: 18px;
   }
 }
+
+
+
+/* ==========================================
+   FIX PROFILE PICTURE — RESTORE REAL COLORS
+========================================== */
+
+.hero-visual .hero-picture {
+  filter: none !important;
+  -webkit-filter: none !important;
+
+  /* Keep the circular profile picture */
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 25%;
+
+  /* Preserve the existing silver glow */
+  border: 2px solid rgba(220, 225, 232, 0.7);
+
+  box-shadow:
+    0 0 10px rgba(220, 225, 232, 0.35),
+    0 0 25px rgba(190, 198, 210, 0.25),
+    0 0 45px rgba(160, 170, 185, 0.15);
+}
+
+/* Keep the original colors when hovering */
+.hero-visual .hero-picture:hover,
+.hero-visual:hover .hero-picture {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
