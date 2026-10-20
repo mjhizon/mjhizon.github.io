@@ -1,3 +1,4 @@
+
 console.log("Welcome to Joshua's Portfolio!");
 
 /* =========================
@@ -54,7 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-/* CONTACT FORM - FORMSPREE */
+/* =========================
+   CONTACT FORM - FORMSPREE
+========================= */
+
 const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
@@ -63,6 +67,12 @@ if (contactForm) {
 
     const formStatus = document.getElementById("formStatus");
     const sendBtn = document.getElementById("sendBtn");
+
+    if (!formStatus || !sendBtn) {
+      console.error("Contact form status or send button is missing.");
+      return;
+    }
+
     const originalButtonText = sendBtn.innerHTML;
 
     formStatus.textContent = "Sending your message...";
@@ -89,6 +99,8 @@ if (contactForm) {
         formStatus.style.color = "#E88A8A";
       }
     } catch (error) {
+      console.error("Contact form error:", error);
+
       formStatus.textContent =
         "Connection error. Please check your internet and try again.";
       formStatus.style.color = "#E88A8A";
@@ -127,13 +139,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.setAttribute("data-theme", theme);
 
     // Update the toggle icon and label
-    themeIcon.className = isLight
-      ? "fa-solid fa-moon"
-      : "fa-solid fa-sun";
+    if (themeIcon) {
+      themeIcon.className = isLight
+        ? "fa-solid fa-moon"
+        : "fa-solid fa-sun";
+    }
 
-    themeText.textContent = isLight
-      ? "Dark Mode"
-      : "Light Mode";
+    if (themeText) {
+      themeText.textContent = isLight
+        ? "Dark Mode"
+        : "Light Mode";
+    }
 
     themeToggle.setAttribute(
       "aria-label",
@@ -160,49 +176,253 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.getElementById("menuToggle");
-  const mainNav = document.getElementById("mainNav");
+/* ==========================================
+   AURA MOUSE POINTER + MOTION TRAIL
+========================================== */
 
-  if (!menuToggle || !mainNav) return;
+function initAuraCursor() {
+  // Prevent duplicate cursor elements
+  if (window.__auraCursorInitialized) return;
 
-  const menuIcon = menuToggle.querySelector("i");
+  const finePointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
 
-  function closeMenu() {
-    mainNav.classList.remove("is-open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation menu");
+  // Keep the normal cursor on touch-only devices
+  if (!finePointer.matches) {
+    console.log("Aura cursor skipped: no fine pointer detected.");
+    return;
+  }
 
-    if (menuIcon) {
-      menuIcon.classList.remove("fa-xmark");
-      menuIcon.classList.add("fa-bars");
+  // Remove any old custom cursor elements
+  document.querySelectorAll(
+    ".aura-cursor, .tech-crosshair"
+  ).forEach(function (element) {
+    element.remove();
+  });
+
+  const root = document.documentElement;
+
+  // Create a cursor element
+  function createCursorPart(className) {
+    const element = document.createElement("div");
+
+    element.className = "aura-cursor " + className;
+    element.setAttribute("aria-hidden", "true");
+
+    document.body.appendChild(element);
+
+    return element;
+  }
+
+  const dot = createCursorPart("aura-cursor__dot");
+  const aura = createCursorPart("aura-cursor__aura");
+
+  const trailOne = createCursorPart(
+    "aura-cursor__trail aura-cursor__trail--one"
+  );
+
+  const trailTwo = createCursorPart(
+    "aura-cursor__trail aura-cursor__trail--two"
+  );
+
+  const trailThree = createCursorPart(
+    "aura-cursor__trail aura-cursor__trail--three"
+  );
+
+  const parts = [dot, aura, trailOne, trailTwo, trailThree];
+
+  window.__auraCursorInitialized = true;
+  root.classList.add("has-aura-cursor");
+
+  let targetX = -100;
+  let targetY = -100;
+  let currentX = -100;
+  let currentY = -100;
+
+  const trails = [
+    { element: trailOne, x: -100, y: -100, speed: 0.30 },
+    { element: trailTwo, x: -100, y: -100, speed: 0.19 },
+    { element: trailThree, x: -100, y: -100, speed: 0.11 }
+  ];
+
+  let animationFrame = null;
+  let pointerInside = false;
+
+  function place(element, x, y) {
+    element.style.transform =
+      `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+  }
+
+  function animate() {
+    currentX += (targetX - currentX) * 0.42;
+    currentY += (targetY - currentY) * 0.42;
+
+    // The dot follows the mouse directly
+    place(dot, targetX, targetY);
+
+    // The aura follows smoothly
+    place(aura, currentX, currentY);
+
+    // Each trail particle follows at a different speed
+    trails.forEach(function (trail) {
+      trail.x += (currentX - trail.x) * trail.speed;
+      trail.y += (currentY - trail.y) * trail.speed;
+
+      place(trail.element, trail.x, trail.y);
+    });
+
+    const distance =
+      Math.abs(targetX - currentX) +
+      Math.abs(targetY - currentY);
+
+    if (distance > 0.15) {
+      animationFrame = requestAnimationFrame(animate);
+    } else {
+      animationFrame = null;
     }
   }
 
-  menuToggle.addEventListener("click", function () {
-    const isOpen = mainNav.classList.toggle("is-open");
+  function startAnimation() {
+    if (animationFrame === null) {
+      animationFrame = requestAnimationFrame(animate);
+    }
+  }
 
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-      "aria-label",
-      isOpen ? "Close navigation menu" : "Open navigation menu"
+  function showCursor() {
+    if (!pointerInside) {
+      pointerInside = true;
+
+      parts.forEach(function (element) {
+        element.classList.add("is-visible");
+      });
+    }
+  }
+
+  function hideCursor() {
+    pointerInside = false;
+
+    parts.forEach(function (element) {
+      element.classList.remove("is-visible");
+    });
+
+    dot.classList.remove("is-hovering", "is-clicking");
+    aura.classList.remove("is-hovering", "is-clicking");
+  }
+
+  // Track mouse movement
+  document.addEventListener("pointermove", function (event) {
+    if (event.pointerType === "touch") return;
+
+    targetX = event.clientX;
+    targetY = event.clientY;
+
+    showCursor();
+    startAnimation();
+  });
+
+  // Elements that trigger the hover effect
+  const interactiveSelector = [
+    "a",
+    "button",
+    "[role='button']",
+    ".skill",
+    ".project-card",
+    "input",
+    "textarea",
+    "select",
+    "label"
+  ].join(",");
+
+  document.addEventListener("pointerover", function (event) {
+    if (event.pointerType === "touch") return;
+
+    if (
+      event.target instanceof Element &&
+      event.target.closest(interactiveSelector)
+    ) {
+      aura.classList.add("is-hovering");
+      dot.classList.add("is-hovering");
+    }
+  });
+
+  document.addEventListener("pointerout", function (event) {
+    const next = event.relatedTarget;
+
+    if (
+      !(next instanceof Element) ||
+      !next.closest(interactiveSelector)
+    ) {
+      aura.classList.remove("is-hovering");
+      dot.classList.remove("is-hovering");
+    }
+  });
+
+  // Click pulse
+  document.addEventListener("pointerdown", function (event) {
+    if (event.pointerType === "touch") return;
+
+    aura.classList.add("is-clicking");
+    dot.classList.add("is-clicking");
+  });
+
+  document.addEventListener("pointerup", function () {
+    aura.classList.remove("is-clicking");
+    dot.classList.remove("is-clicking");
+  });
+
+  // Hide when the pointer leaves the document
+  document.addEventListener("pointerleave", function (event) {
+    if (event.target === document) {
+      hideCursor();
+    }
+  });
+
+  // Hide when the browser window loses focus
+  window.addEventListener("blur", hideCursor);
+
+  window.addEventListener("focus", function () {
+    hideCursor();
+  });
+
+  // Remove custom cursor if pointer capability changes
+  function handlePointerCapabilityChange() {
+    if (!finePointer.matches) {
+      hideCursor();
+
+      root.classList.remove("has-aura-cursor");
+
+      parts.forEach(function (element) {
+        element.remove();
+      });
+
+      if (animationFrame !== null) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+
+      window.__auraCursorInitialized = false;
+    }
+  }
+
+  if (finePointer.addEventListener) {
+    finePointer.addEventListener(
+      "change",
+      handlePointerCapabilityChange
     );
+  } else {
+    finePointer.addListener(handlePointerCapabilityChange);
+  }
 
-    if (menuIcon) {
-      menuIcon.classList.toggle("fa-bars", !isOpen);
-      menuIcon.classList.toggle("fa-xmark", isOpen);
-    }
-  });
+  console.log("Aura cursor initialized:", parts.length, "elements");
+}
 
-  // Close the menu after selecting a navigation link
-  mainNav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", closeMenu);
+// Run only after the body exists
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initAuraCursor, {
+    once: true
   });
+} else {
+  initAuraCursor();
+}
 
-  // Close the menu when returning to desktop width
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 600) {
-      closeMenu();
-    }
-  });
-});
