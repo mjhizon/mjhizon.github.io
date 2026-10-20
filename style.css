@@ -3681,4 +3681,346 @@ nav a {
   transform: translate(2px, -2px);
 }
 
+/* GLOWING PROFILE PICTURE */
+.hero-picture {
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(220, 225, 232, 0.7);
+
+  box-shadow:
+    0 0 10px rgba(220, 225, 232, 0.35),
+    0 0 25px rgba(190, 198, 210, 0.25),
+    0 0 45px rgba(160, 170, 185, 0.15);
+
+  animation: silverProfileGlow 3s ease-in-out infinite alternate;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* SOFT PULSING GLOW */
+@keyframes silverProfileGlow {
+  from {
+    box-shadow:
+      0 0 8px rgba(220, 225, 232, 0.3),
+      0 0 18px rgba(190, 198, 210, 0.2),
+      0 0 30px rgba(160, 170, 185, 0.12);
+  }
+
+  to {
+    box-shadow:
+      0 0 14px rgba(240, 243, 248, 0.65),
+      0 0 30px rgba(200, 210, 225, 0.4),
+      0 0 50px rgba(175, 185, 200, 0.25);
+  }
+}
+
+/* STRONGER GLOW ON HOVER */
+.hero-picture:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 18px rgba(240, 243, 248, 0.8),
+    0 0 40px rgba(200, 210, 225, 0.55),
+    0 0 65px rgba(175, 185, 200, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-picture {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   PREMIUM HERO — SILVER ORBITAL PFP
+   ========================================== */
+
+.hero-visual {
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Soft ambient halo behind the profile */
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  width: 82%;
+  aspect-ratio: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(190, 200, 215, 0.15) 0%,
+    rgba(155, 170, 190, 0.07) 42%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  z-index: 0;
+  pointer-events: none;
+  animation: pfpAmbientGlow 5s ease-in-out infinite alternate;
+}
+
+/* Orbital rings */
+.hero-visual .pfp-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+/* Outer ring */
+.hero-visual .pfp-orbit-outer {
+  width: 115%;
+  height: 115%;
+  border: 1px solid rgba(205, 215, 228, 0.45);
+  transform: translate(-50%, -50%);
+  animation: pfpOuterOrbit 32s linear infinite;
+}
+
+/* Inner ring */
+.hero-visual .pfp-orbit-inner {
+  width: 106%;
+  height: 106%;
+  border: 1px solid rgba(205, 215, 228, 0.22);
+  transform: translate(-50%, -50%);
+  animation: pfpInnerOrbit 24s linear infinite;
+}
+
+/* Subtle highlight on the outer ring */
+.hero-visual .pfp-orbit-outer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  border-top-color: rgba(240, 244, 250, 0.75);
+  border-right-color: rgba(220, 228, 240, 0.18);
+  filter: drop-shadow(0 0 4px rgba(220, 228, 240, 0.35));
+}
+
+/* Orbiting light dots */
+.hero-visual .pfp-orbit-dot {
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e8edf5;
+  box-shadow:
+    0 0 6px rgba(225, 233, 245, 0.9),
+    0 0 15px rgba(190, 205, 225, 0.5);
+  transform: translateY(-50%);
+}
+
+.hero-visual .pfp-orbit-inner .pfp-orbit-dot {
+  width: 4px;
+  height: 4px;
+  right: auto;
+  left: 12%;
+  background: #bfc9d8;
+  opacity: 0.8;
+}
+
+/* Existing photo stays circular */
+.hero-visual .hero-picture {
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(220, 228, 240, 0.65);
+  box-shadow:
+    0 0 12px rgba(210, 220, 235, 0.18),
+    0 0 28px rgba(175, 190, 210, 0.12);
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+/* Interactive photo hover */
+.hero-visual:hover .hero-picture {
+  transform: scale(1.025);
+  border-color: rgba(240, 244, 250, 0.9);
+  box-shadow:
+    0 0 14px rgba(220, 230, 245, 0.3),
+    0 0 32px rgba(180, 200, 225, 0.22);
+}
+
+/* Gentle ambient breathing */
+@keyframes pfpAmbientGlow {
+  from {
+    opacity: 0.65;
+    scale: 0.96;
+  }
+  to {
+    opacity: 1;
+    scale: 1.04;
+  }
+}
+
+/* Slow orbital movement */
+@keyframes pfpOuterOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes pfpInnerOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+/* Responsive rings */
+@media (max-width: 480px) {
+  .hero-visual .pfp-orbit-outer {
+    width: 110%;
+    height: 110%;
+  }
+
+  .hero-visual .pfp-orbit-inner {
+    width: 104%;
+    height: 104%;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual::before,
+  .hero-visual .pfp-orbit {
+    animation: none;
+  }
+
+  .hero-visual .hero-picture {
+    transition: none;
+  }
+}
+
+/* ==========================================
+   PREMIUM HERO — TYPOGRAPHY & INTERACTIONS
+   ========================================== */
+
+.hero-content .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Small silver status indicator */
+.hero-content .tag span {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #cbd3df;
+  box-shadow: 0 0 9px rgba(210, 220, 235, 0.65);
+  animation: heroStatusPulse 3s ease-in-out infinite;
+}
+
+/* Refined main heading */
+.hero-content h1 {
+  letter-spacing: -0.045em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.hero-content h1 span {
+  text-shadow: 0 0 28px rgba(200, 210, 225, 0.08);
+}
+
+/* Improve reading comfort */
+.hero-content .hero-description {
+  max-width: 540px;
+  line-height: 1.85;
+}
+
+/* Smooth button interactions */
+.hero-buttons .btn,
+.hero-content > .btn {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.hero-buttons .btn:hover,
+.hero-content > .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Status light animation */
+@keyframes heroStatusPulse {
+  0%, 100% {
+    opacity: 0.7;
+    box-shadow: 0 0 5px rgba(210, 220, 235, 0.35);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 11px rgba(220, 230, 245, 0.8);
+  }
+}
+
+/* Light theme adjustments */
+body[data-theme="light"] .hero-visual::before {
+  background: radial-gradient(
+    circle,
+    rgba(95, 105, 120, 0.12) 0%,
+    rgba(130, 140, 155, 0.06) 45%,
+    transparent 72%
+  );
+}
+
+body[data-theme="light"] .hero-visual .pfp-orbit-outer {
+  border-color: rgba(75, 85, 100, 0.4);
+}
+
+body[data-theme="light"] .hero-visual .pfp-orbit-inner {
+  border-color: rgba(75, 85, 100, 0.23);
+}
+
+body[data-theme="light"] .hero-visual .pfp-orbit-dot {
+  background: #687384;
+  box-shadow:
+    0 0 6px rgba(90, 105, 125, 0.45),
+    0 0 12px rgba(90, 105, 125, 0.2);
+}
+
+body[data-theme="light"] .hero-content h1 span {
+  text-shadow: 0 0 24px rgba(60, 70, 85, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content .tag span {
+    animation: none;
+  }
+
+  .hero-buttons .btn,
+  .hero-content > .btn {
+    transition: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    letter-spacing: -0.025em;
+  }
+}
+
 
