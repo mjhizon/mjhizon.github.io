@@ -2612,4 +2612,151 @@ footer a:hover {
   }
 }
 
+/* =========================
+   SKILLS POPUP POSITION FIX
+========================= */
+
+#skills .skill .skill-description {
+  top: auto !important;
+  bottom: calc(100% + 8px) !important;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 240px;
+  max-width: calc(100vw - 32px);
+  box-sizing: border-box;
+
+  background: #08090B !important;
+  color: #E8E9EB;
+  border: 1px solid #35373B;
+  border-radius: 6px;
+
+  padding: 14px;
+  line-height: 1.6;
+  text-align: left;
+
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  #skills .skill .skill-description {
+    width: 220px;
+    max-width: calc(100vw - 32px);
+    padding: 12px;
+  }
+}
+
+
+/* CONTACT SOCIAL LINKS */
+
+#contact .contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+#contact .social-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+#contact .social-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  font-size: 21px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#contact .social-text h3 {
+  margin: 0 0 5px;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+#contact .social-text p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+#contact .social-link:hover {
+  color: var(--text-primary);
+}
+
+#contact .social-link:hover .social-icon {
+  background: var(--bg-accent);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+
+
+/* CONTACT SOCIAL MEDIA LOGOS */
+
+#contact .contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+#contact a.social-link {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+#contact .social-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  border-radius: 50%;
+  font-size: 22px;
+  transition: 0.3s ease;
+}
+
+#contact .social-text h3 {
+  margin: 0 0 5px;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+#contact .social-text p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+#contact a.social-link:hover .social-icon {
+  background: var(--bg-accent);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
 
