@@ -4024,3 +4024,129 @@ body[data-theme="light"] .hero-content h1 span {
 }
 
 
+/* ==========================================
+   MOBILE NAVIGATION FIX
+   Keep navigation clean and readable
+========================================== */
+
+@media (max-width: 600px) {
+
+  /* Let the header grow naturally */
+  header {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    box-sizing: border-box;
+  }
+
+  /* Keep navigation in a single horizontal row
+     and allow horizontal scrolling if necessary */
+  header nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 14px;
+
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    padding: 12px 14px;
+    box-sizing: border-box;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent links from wrapping into multiple lines */
+  header nav a {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  /* Keep the theme button from squeezing the links */
+  header nav .theme-toggle {
+    flex: 0 0 auto;
+    width: auto;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* Hide the scrollbar while preserving scrolling */
+  header nav {
+    scrollbar-width: none;
+  }
+
+  header nav::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ==========================================
+   LIGHT MODE — MOBILE LOGO AND BRAND
+========================================== */
+
+body[data-theme="light"] header,
+body[data-theme="light"] header nav {
+  color: var(--text-primary);
+  background-color: var(--bg-navbar);
+}
+
+/* Common logo/brand selectors */
+body[data-theme="light"] header .logo,
+body[data-theme="light"] header .navbar-brand,
+body[data-theme="light"] header .nav-logo,
+body[data-theme="light"] header .brand,
+body[data-theme="light"] header .logo a,
+body[data-theme="light"] header .navbar-brand a,
+body[data-theme="light"] header .nav-logo a {
+  color: var(--text-primary);
+}
+
+/* Make logo icons follow the active theme */
+body[data-theme="light"] header .logo i,
+body[data-theme="light"] header .navbar-brand i,
+body[data-theme="light"] header .nav-logo i,
+body[data-theme="light"] header .brand i {
+  color: var(--text-primary);
+}
+
+/* If the logo is an image, prevent dark backgrounds
+   from showing behind transparent logo artwork */
+body[data-theme="light"] header .logo img,
+body[data-theme="light"] header .navbar-brand img,
+body[data-theme="light"] header .nav-logo img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Mobile-specific theme colors */
+@media (max-width: 600px) {
+  body[data-theme="light"] header {
+    background-color: #FFFFFF;
+    border-bottom-color: #D2D5D9;
+  }
+
+  body[data-theme="light"] header nav a {
+    color: #202226;
+  }
+
+  body[data-theme="light"] header nav a:hover {
+    color: #555B64;
+  }
+
+  body[data-theme="light"] header .theme-toggle {
+    color: #202226;
+    background-color: #FFFFFF;
+    border-color: #AEB3BA;
+  }
+}
