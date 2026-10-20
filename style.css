@@ -4238,3 +4238,29 @@ body[data-theme="light"] header .nav-logo img {
     box-sizing: border-box;
   }
 }
+
+
+/* MJ LOGO IMAGE */
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+}
+
+.logo-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Keep logo aligned with portfolio text */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
