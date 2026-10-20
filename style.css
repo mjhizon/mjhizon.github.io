@@ -4150,3 +4150,91 @@ body[data-theme="light"] header .nav-logo img {
     border-color: #AEB3BA;
   }
 }
+
+
+
+/* =====================================
+   MOBILE HAMBURGER NAVIGATION
+===================================== */
+
+/* Hidden on desktop */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 18px;
+    z-index: 1000;
+  }
+
+  /* Show the hamburger button */
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-navbar);
+    color: var(--text-primary);
+    font-size: 22px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .menu-toggle:hover {
+    color: var(--accent);
+  }
+
+  /* Hide the navigation until opened */
+  header nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px 0;
+    box-sizing: border-box;
+    background: var(--bg-navbar);
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* Display links when menu is open */
+  header nav.is-open {
+    display: flex;
+  }
+
+  header nav a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  header nav .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin: 8px 0 0 8px;
+    padding: 10px 12px;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}

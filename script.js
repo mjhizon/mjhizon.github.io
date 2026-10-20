@@ -159,3 +159,50 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menuToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  if (!menuToggle || !mainNav) return;
+
+  const menuIcon = menuToggle.querySelector("i");
+
+  function closeMenu() {
+    mainNav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+
+    if (menuIcon) {
+      menuIcon.classList.remove("fa-xmark");
+      menuIcon.classList.add("fa-bars");
+    }
+  }
+
+  menuToggle.addEventListener("click", function () {
+    const isOpen = mainNav.classList.toggle("is-open");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+
+    if (menuIcon) {
+      menuIcon.classList.toggle("fa-bars", !isOpen);
+      menuIcon.classList.toggle("fa-xmark", isOpen);
+    }
+  });
+
+  // Close the menu after selecting a navigation link
+  mainNav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close the menu when returning to desktop width
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 600) {
+      closeMenu();
+    }
+  });
+});
